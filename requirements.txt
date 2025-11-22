@@ -28,4 +28,4 @@ typer-slim==0.20.0
 typing_extensions==4.15.0
 typing-inspection==0.4.2
 aiofiles==25.1.0
-transfromers
+transformers==4.57.1

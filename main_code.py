@@ -1,13 +1,13 @@
 import os,sys
 from os import PathLike
-from huggingface_hub import AsyncInferenceClient
+from huggingface_hub import AsyncInferenceClient,InferenceClient
 import asyncio
 import aiofiles as aiof
 
 
 os.environ["HF_TOKEN"] = ""
 
-client = AsyncInferenceClient(
+client = InferenceClient(
     api_key=os.environ["HF_TOKEN"],
 )
 
@@ -15,9 +15,9 @@ models = [
     # "LLM-LAT/robust-llama3-8b-instruct:featherless-ai",
     # "Commencis/Commencis-LLM:featherless-ai",
     # "WiroAI/wiroai-turkish-llm-8b:featherless-ai",
-    "CohereLabs/c4ai-command-a-03-2025:cohere",
-    "HuggingFaceTB/SmolLM3-3B:hf-inference",
-    "IlyaGusev/saiga_llama3_8b:featherless-ai",
+    # "CohereLabs/c4ai-command-a-03-2025",
+    # "HuggingFaceTB/SmolLM3-3B",
+    "IlyaGusev/saiga_llama3_8b",
 ]
 
 async def main():
@@ -37,7 +37,7 @@ async def main():
     tasks = []
     async with asyncio.TaskGroup() as tg:
         for model in models:
-            task = tg.create_task(async_ask_model(model,question))
+            task = tg.create_task(ask_model(model,question))
             tasks.append(task)
     
     

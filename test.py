@@ -1,6 +1,5 @@
 import os
 from huggingface_hub import InferenceClient
-
 os.environ["HF_TOKEN"] = ""
 
 client = InferenceClient(
@@ -8,7 +7,7 @@ client = InferenceClient(
 )
 
 completion = client.chat.completions.create(
-    model="google/gemma-2-2b-it:nebius",
+    model="Commencis/Commencis-LLM:featherless-ai",
     messages=[
         {
             "role": "user",
